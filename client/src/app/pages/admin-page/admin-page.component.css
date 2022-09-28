@@ -1,0 +1,17 @@
+.edit-wrapper {
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.drawer {
+    width: 50%;
+    background: #2e2e2e;
+}
+
+.tree-wrapper {
+    max-height: 93vh;
+    overflow-y: scroll;
+}
+
+.tree-wrapper::-webkit-scrollbar {
+    display: none;
+}

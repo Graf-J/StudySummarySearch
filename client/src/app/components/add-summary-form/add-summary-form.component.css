@@ -1,0 +1,29 @@
+.add-form-wrapper {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.keywords-wrapper {
+    background: rgba(255, 255, 255, 0.3);
+    max-height: 20vh;
+    overflow-y: scroll;
+}
+
+.keywords-wrapper::-webkit-scrollbar {
+    display: none;
+}
+
+.keyword-wrapper {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.filename-wrapper {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.mat-danger {
+    color: #f1172f;
+}

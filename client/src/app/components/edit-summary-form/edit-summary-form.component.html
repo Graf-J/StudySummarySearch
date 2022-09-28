@@ -1,0 +1,74 @@
+<div class="add-form-wrapper m-4 p-4 rounded border border-secondary">
+    <form #form="ngForm" class="d-flex flex-column" [formGroup]="editSummaryForm" >
+        <mat-form-field appearance="fill">
+            <mat-label>Semester</mat-label>
+            <input matInput type="number" formControlName="semester">
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Subject</mat-label>
+            <input matInput 
+                [matAutocomplete]="autoSubject" 
+                (ngModelChange)="onSubjectChange()"
+                formControlName="subject">
+            <mat-autocomplete #autoSubject="matAutocomplete">
+                <mat-option *ngFor="let subject of subjects" [value]="subject">
+                    {{ subject | titlecase }}
+                </mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Name</mat-label>
+            <input matInput formControlName="name">
+        </mat-form-field>
+
+
+        <div class="d-flex justify-content-start align-items-center">
+            <input #fileInput hidden="true" (change)="onFileChange($event)" type="file" accept=".jpg" formControlName="image">
+            <button mat-flat-button type="button" class="mb-3 w-50" color="primary" (click)="fileInput.click()">Change Image</button>
+            <div class="filename-wrapper" [ngStyle]="editSummaryForm.get('image')!.invalid ? { 'color': 'red' } : null">
+                <p class="w-50 mx-2">{{ imageFileName }}</p>
+            </div>
+        </div>
+        
+        <div class="border border-secondary rounded p-2">
+            <form class="d-flex justify-content-between" #subForm="ngForm" (ngSubmit)="onKeywordSubmit(subForm)" [formGroup]="keywordForm">
+                <mat-form-field class="w-75" appearance="fill">
+                    <mat-label>Keyword</mat-label>
+                    <input matInput 
+                        [matAutocomplete]="autoKeyword" 
+                        (ngModelChange)="onKeywordChange()"
+                        formControlName="keyword">
+                    <mat-autocomplete #autoKeyword="matAutocomplete">
+                        <mat-option *ngFor="let autocompleteKeyword of autocompleteKeywords" [value]="autocompleteKeyword">
+                            {{ autocompleteKeyword | titlecase }}
+                        </mat-option>
+                    </mat-autocomplete>
+                </mat-form-field>
+                <button mat-fab color="primary">
+                    <mat-icon>add</mat-icon>
+                </button>
+            </form>
+            <div class="keywords-wrapper rounded">
+                <div class="d-flex justify-content-between align-items-center m-2 p-2 border border-secondary rounded" *ngFor="let keyword of keywords" >
+                    <div class="keyword-wrapper w-75">
+                        <strong class="h5">{{ keyword | titlecase }}</strong>
+                    </div>
+                    <button mat-icon-button type="button" color="danger" (click)="onKeywordDelete(keyword)">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="d-flex">
+            <button mat-raised-button (click)="onDelete(form, subForm)" class="mt-3 mx-2 w-50" [disabled]="isLoading || !selectedSummary" color="warn">Delete</button>
+            <button mat-raised-button (click)="onUpdate()" class="mt-3 mx-2 w-50" [disabled]="isLoading || !selectedSummary" color="accent">Update</button>
+        </div>
+        <mat-progress-bar class="mt-2" *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
+        <div *ngIf="backendError" class="text-center mt-2">
+            <p [ngStyle]="{ 'color': 'red' }" >{{ backendError }}</p>
+        </div>
+    </form>
+</div>

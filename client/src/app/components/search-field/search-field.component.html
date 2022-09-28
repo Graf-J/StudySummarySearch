@@ -1,0 +1,39 @@
+<form class="container-fluid" (ngSubmit)="onSubmit()">
+    <div class="row">
+        <mat-form-field class="col-6 col-xxl-7" appearance="fill">
+            <mat-label>Keyword</mat-label>
+            <input type="text"
+                    name="keyword"
+                    [(ngModel)]="keyword"
+                    (ngModelChange)="onKeywordChange()"
+                    aria-label="Keyword"
+                    matInput
+                    [matAutocomplete]="autoKeyword">
+            <mat-autocomplete #autoKeyword="matAutocomplete">
+                <mat-option *ngFor="let keyword of keywords" [value]="keyword">
+                    {{ keyword | titlecase }}
+                </mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+
+        <mat-form-field class="col-4" appearance="fill">
+            <mat-label>Author</mat-label>
+            <input type="text"
+                    name="author"
+                    [(ngModel)]="authorUsername"
+                    (ngModelChange)="onAuthorChange()"
+                    aria-label="Author"
+                    matInput
+                    [matAutocomplete]="autoAuthor">
+            <mat-autocomplete #autoAuthor="matAutocomplete">
+                <mat-option *ngFor="let authorUsername of authorUsernames" [value]="authorUsername">
+                    {{ authorUsername }}
+                </mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+
+        <button class="col-2 col-xxl-1" mat-fab color="primary" aria-label="Example icon button with a delete icon">
+            <mat-icon>search</mat-icon>
+        </button>
+    </div>
+</form>

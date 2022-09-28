@@ -1,0 +1,47 @@
+<div class="container-fluid h-100 p-4">
+    <div class="row">
+        <div class="col-7">
+            <form #dropboxForm="ngForm" class="add-dropbox-wrapper container-fluid rounded d-flex justify-content-between align-items-center" (ngSubmit)="onSetDropboxToken(dropboxForm)" [formGroup]="dropboxTokenForm">
+                <mat-form-field class="w-75 mt-3" appearance="fill">
+                    <mat-label>Dropbox Token</mat-label>
+                    <input matInput formControlName="dropboxToken">
+                </mat-form-field>
+                <button mat-fab color="primary" [disabled]="isDropboxTokenLoading">
+                    <mat-icon>add</mat-icon>
+                </button>
+            </form>
+            <div class="mt-4">
+                <mat-progress-bar *ngIf="isUsersLoading" mode="indeterminate"></mat-progress-bar>
+            </div>
+            <div class="users-wrapper mt-4 rounded" *ngIf="!isUsersLoading" >
+                <div class="user-wrapper p-2 m-1 rounded d-flex justify-content-between align-items-center" *ngFor="let user of users" [ngStyle]="selectedUserId === user.id && { 'background': '#7342c7' } || null" (click)="onUserClick(user.id)">
+                    <h1 class="m-0">{{ user.username }}</h1>
+                    <mat-spinner color="accent" *ngIf="isUserDeleteLoading === user.id && user.username !== 'Graf'" diameter="45"></mat-spinner>
+                    <button mat-mini-fab color="warn" *ngIf="user.username !== 'Graf' && isUserDeleteLoading !== user.id" (click)="onUserDelete($event, user.id)">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="register-wrapper col-5 container-fluid d-inline d-flex justify-content-center">
+            <form #form="ngForm" class="register-form d-flex bg-light opacity-75 rounded w-75 p-3 flex-column" [formGroup]="registerForm" (ngSubmit)="onRegister(form)">
+                <h1>Register</h1>
+                <mat-form-field appearance="fill">
+                    <mat-label>Name</mat-label>
+                    <input formControlName="name" matInput>
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>Password</mat-label>
+                    <input type="password" autocomplete="on" formControlName="password" matInput>
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>Compare Password</mat-label>
+                    <input type="password" autocomplete="on" formControlName="comparePassword" matInput>
+                </mat-form-field>
+                <p *ngIf="registerError" class="text-danger">{{ registerError }}</p>
+                <button mat-raised-button color="primary">Register</button>
+                <mat-progress-bar *ngIf="isRegisterLoading" class="mt-1" mode="indeterminate"></mat-progress-bar>
+            </form>
+        </div>
+    </div>
+</div>

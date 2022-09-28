@@ -1,0 +1,28 @@
+<div class="page-wrapper container-fluid">
+    <div class="row d-none d-lg-flex">
+        <div class="col-3 p-2">
+            <div class="tree-wrapper bg-light rounded opacity-75 p-2">
+                <app-dropbox-tree *ngIf="isLargeDisplay" (nameSelect)="onNameSelect($event)"></app-dropbox-tree>
+            </div>
+        </div>
+        <div class="col-9 p-2">
+            <app-search-field (search)="onSearch($event)"></app-search-field>
+            <app-image-collection [summaries]="summaries" display="desktop"></app-image-collection>
+        </div>
+    </div>
+
+    <div class="row d-lg-none">
+        <mat-drawer-container class="drawer-container bg-transparent p-0" autosize>
+            <mat-drawer #drawer class="drawer p-2">
+                <div class="tree-wrapper bg-light rounded opacity-75 p-2">
+                    <app-dropbox-tree *ngIf="!isLargeDisplay" (nameSelect)="onNameSelect($event)"></app-dropbox-tree>
+                </div>
+            </mat-drawer>
+            <button mat-mini-fab class="m-2" (click)="drawer.toggle()" mat-icon-button color="primary">
+                <mat-icon>menu</mat-icon>
+            </button>
+            <app-search-field (search)="onSearch($event)"></app-search-field>
+            <app-image-collection [summaries]="summaries" display="mobile"></app-image-collection>
+        </mat-drawer-container>
+    </div>
+</div>

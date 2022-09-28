@@ -1,0 +1,23 @@
+.page-wrapper {
+    height: 100vh;
+    width: 100vw;
+}
+
+.tree-wrapper {
+    max-height: 97vh;
+    overflow-y: scroll;
+}
+
+.tree-wrapper::-webkit-scrollbar {
+    display: none;
+}
+
+.drawer-container {
+    height: 100vh;
+    width: 100vw;
+}
+
+.drawer {
+    width: 80%;
+    background: #2e2e2e	
+}

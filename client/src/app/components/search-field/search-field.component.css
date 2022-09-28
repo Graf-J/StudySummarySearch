@@ -1,0 +1,4 @@
+:host ::ng-deep .mat-form-field-flex {
+    background: rgb(255, 255, 255);
+    opacity: 0.75;
+}

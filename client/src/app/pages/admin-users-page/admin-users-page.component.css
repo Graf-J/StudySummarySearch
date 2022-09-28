@@ -1,0 +1,26 @@
+.add-dropbox-wrapper {
+    background: rgba(255, 255, 255, 0.6);
+}
+
+.users-wrapper {
+    background: rgba(255, 255, 255, 0.6);
+    max-height: 80vh;
+    overflow-y: scroll;
+}
+
+.users-wrapper::-webkit-scrollbar {
+    display: none;
+}
+
+.user-wrapper {
+    transition: .35s;
+}
+
+.user-wrapper:hover {
+    cursor: pointer;
+    background: #8252d6;
+}
+
+.register-wrapper {
+    height: fit-content;
+}
