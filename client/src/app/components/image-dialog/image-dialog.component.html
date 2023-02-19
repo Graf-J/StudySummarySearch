@@ -1,7 +1,7 @@
 <h2 mat-dialog-title>Semester {{ summary.semester }}, {{ summary.subject | titlecase }}, {{ summary.name | titlecase }}</h2>
 <mat-dialog-content class="mat-dialog-cls mat-typography">
-    <div class="drawer-image-wrapper" (click)="onClick(summary.url)">
-        <img class="drawer-image" src="{{ summary.url }}">
+    <div class="drawer-image-wrapper" (click)="onClick(summary.image)">
+        <img class="drawer-image" [src]="'data:image/jpeg;base64,' + summary.image ">
     </div>
 </mat-dialog-content>
 

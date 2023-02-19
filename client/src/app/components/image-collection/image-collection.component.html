@@ -1,13 +1,18 @@
 <div [ngClass]="getCssWrapperClass()" class="rounded">
     <div class="img-wrapper text-center" *ngFor="let summary of summaries; let i = index">
-        <div *ngIf="summary.isImageLoading" (click)="onClick(summary)" [ngClass]="getCssLoadContainerClass()">
+        <!-- <div *ngIf="summary.isImageLoading" (click)="onClick(summary)" [ngClass]="getCssLoadContainerClass()">
             <mat-spinner [ngStyle]="{ 'left': '50%', 'transform': 'translateX(-50%)' }"></mat-spinner>
-        </div>
-        <img [ngStyle]="{ 'display': summary.isImageLoading ? 'none' : 'inline-block'}" 
+        </div> -->
+        <!-- <img [ngStyle]="{ 'display': summary.isImageLoading ? 'none' : 'inline-block'}" 
             class="img-thumbnail"
             [ngClass]="getCssImageClass()"
             (click)="onClick(summary)" 
             (load)="onLoaded(i)"
-            src="{{ summary.url }}" />
+            src="{{ summary.url }}" /> -->
+            <img 
+                class="img-thumbnail"
+                [ngClass]="getCssImageClass()"
+                (click)="onClick(summary)"
+                [src]="'data:image/jpeg;base64,' + summary.image "/>
     </div>
 </div>

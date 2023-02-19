@@ -29,6 +29,7 @@ export class LandingPageComponent implements OnInit {
 
   querySummaries(): void {
     this.summaryService.get(this.semester, this.subject, this.keyword, this.name, this.authorId).subscribe((summaries: Summary[]) => {
+      console.log(summaries);
       this.summaries = summaries;
     })
   }
