@@ -33,7 +33,7 @@ export class LoginPageComponent implements OnInit {
           this.isLoading = false;
           this.auth.isLoggedIn = true;
           sessionStorage.setItem('token', res.jwt);
-          this.router.navigate(['admin']);
+          this.router.navigate(['']);
         },
         error: err => {
           this.loginError = true;

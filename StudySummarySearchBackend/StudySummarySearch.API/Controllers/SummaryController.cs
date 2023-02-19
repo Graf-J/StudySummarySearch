@@ -10,6 +10,7 @@ using StudySummarySearch.Contracts.Summary;
 
 namespace StudySummarySearch.API.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class SummaryController : ControllerBase

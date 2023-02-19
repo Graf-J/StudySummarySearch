@@ -2,12 +2,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using StudySummarySearch.API.Services.SubjectServices;
 using StudySummarySearch.Contracts.Service;
 
 namespace StudySummarySearch.API.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class SubjectController : ControllerBase
