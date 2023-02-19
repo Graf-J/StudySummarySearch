@@ -33,10 +33,6 @@ export class AuthService {
     return this.http.post<User>(`${ environment.serverURL }/api/Auth/register`, { userName, password, comparePassword });
   }
 
-  setDropboxToken(token: string, userId?: number): Observable<any> {
-    return this.http.post(`${ environment.serverURL }/api/Auth/dropbox-token${ userId ? `/${ userId }` : '' }`, { token });
-  }
-
   getTokenUserId(jwt: string): string {
     const decodedToken: any = jwt_decode(jwt);
     return decodedToken['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier'];

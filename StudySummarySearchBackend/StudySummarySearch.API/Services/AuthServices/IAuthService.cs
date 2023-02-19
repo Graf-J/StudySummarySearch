@@ -11,7 +11,5 @@ namespace StudySummarySearch.API.Services.AuthServices
     {
         Task<ServiceResponse<UserLoginResponseDto>> Login(string userName, string password);
         Task<ServiceResponse<UserResponseDto>> Register(string userName, string password);
-        Task<ServiceResponse> SetDropboxToken(string token);
-        Task<ServiceResponse> SetDropboxToken(int id, string token);
     }
 }

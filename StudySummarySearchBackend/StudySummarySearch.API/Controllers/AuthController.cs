@@ -55,39 +55,5 @@ namespace StudySummarySearch.API.Controllers
                     return Problem(response.Message);
             }
         }
-
-        [Authorize(Roles = "SuperUser")]
-        [HttpPost("dropbox-token")]
-        public async Task<IActionResult> SetDropboxToken(UserSetDropboxTokenRequest request)
-        {
-            var response = await _authSerivce.SetDropboxToken(request.Token);
-
-            switch (response.Status)
-            {
-                case ServiceErrors.NotFound:
-                    return BadRequest(response.Message);
-                case ServiceErrors.Ok:
-                    return Ok();
-                default:
-                    return Problem(response.Message);
-            }
-        }
-
-        [Authorize(Roles = "SuperUser")]
-        [HttpPost("dropbox-token/{id}")]
-        public async Task<IActionResult> SetDropboxToken(int id, UserSetDropboxTokenRequest request)
-        {
-            var response = await _authSerivce.SetDropboxToken(id, request.Token);
-
-            switch (response.Status)
-            {
-                case ServiceErrors.NotFound:
-                    return BadRequest(response.Message);
-                case ServiceErrors.Ok:
-                    return Ok();
-                default:
-                    return Problem(response.Message);
-            }
-        }
     }
 }

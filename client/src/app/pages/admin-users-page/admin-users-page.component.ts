@@ -27,8 +27,6 @@ export class AdminUsersPageComponent implements OnInit {
   selectedUserId: number = 0;
   isUserDeleteLoading: number = 0;
 
-  isDropboxTokenLoading: boolean = false;
-
   isRegisterLoading: boolean = false;
   registerError?: string;
 
@@ -49,17 +47,6 @@ export class AdminUsersPageComponent implements OnInit {
       this.users = users;
       this.isUsersLoading = false;
     });
-  }
-
-  onSetDropboxToken(form: FormGroupDirective): void {
-    if (this.dropboxTokenForm.valid) {
-      this.isDropboxTokenLoading = true;
-      this.authService.setDropboxToken(this.dropboxTokenForm.value.dropboxToken!, this.selectedUserId === 0 ? undefined : this.selectedUserId).subscribe(() => {
-        this.dropboxTokenForm.reset();
-        form.resetForm();
-        this.isDropboxTokenLoading = false;
-      })
-    }
   }
 
   onUserClick(userId: number) {

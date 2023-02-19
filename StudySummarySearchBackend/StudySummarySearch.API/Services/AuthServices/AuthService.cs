@@ -99,62 +99,6 @@ namespace StudySummarySearch.API.Services.AuthServices
             return response;
         }
 
-        public async Task<ServiceResponse> SetDropboxToken(string token)
-        {
-            var response = new ServiceResponse();
-
-            try 
-            {
-                var user = await _context.Users
-                    .FirstOrDefaultAsync(u => u.Id == int.Parse(_httpContextAccessor.HttpContext!.User.FindFirstValue(ClaimTypes.NameIdentifier)));
-
-                if (user == null)
-                {
-                    response.Status = ServiceErrors.NotFound;
-                    response.Message = "User not found.";
-                    return response;
-                }
-
-                user.DropboxAccessToken = token;
-                await _context.SaveChangesAsync();
-            }
-            catch (Exception ex)
-            {
-                response.Status = ServiceErrors.Unknown;
-                response.Message = ex.Message;
-            }
-
-            return response;
-        }
-
-        public async Task<ServiceResponse> SetDropboxToken(int id, string token)
-        {
-            var response = new ServiceResponse();
-
-            try 
-            {
-                var user = await _context.Users
-                    .FirstOrDefaultAsync(u => u.Id == id);
-
-                if (user == null)
-                {
-                    response.Status = ServiceErrors.NotFound;
-                    response.Message = "User not found.";
-                    return response;
-                }
-
-                user.DropboxAccessToken = token;
-                await _context.SaveChangesAsync();
-            }
-            catch (Exception ex)
-            {
-                response.Status = ServiceErrors.Unknown;
-                response.Message = ex.Message;
-            }
-
-            return response;
-        }
-
         private void GeneratePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt) 
         {
             using (var hmac = new HMACSHA512())
