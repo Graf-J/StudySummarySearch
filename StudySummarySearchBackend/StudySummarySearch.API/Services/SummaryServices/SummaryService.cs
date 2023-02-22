@@ -98,9 +98,9 @@ namespace StudySummarySearch.API.Services.SummaryServices
                     summary.Semester = dbSemester;
                 
                 // If Subject already exists -> link existing Subject to Summary, else Create new Subject
-                var dbSubject = await _context.Subjects.FirstOrDefaultAsync(s => s.Value == request.Subject.ToLower());
+                var dbSubject = await _context.Subjects.FirstOrDefaultAsync(s => s.Value == request.Subject);
                 if (dbSubject == null)
-                    summary.Subject = new Subject { Value = request.Subject.ToLower() };
+                    summary.Subject = new Subject { Value = request.Subject };
                 else
                     summary.Subject = dbSubject;
 
@@ -245,14 +245,14 @@ namespace StudySummarySearch.API.Services.SummaryServices
                     }
                 }
 
-                if (summary.Subject.Value != request.Subject.ToLower())
+                if (summary.Subject.Value != request.Subject)
                 {
                     // Create new Subject or reuse existent Subject
-                    var dbSubject = await _context.Subjects.FirstOrDefaultAsync(s => s.Value == request.Subject.ToLower());
+                    var dbSubject = await _context.Subjects.FirstOrDefaultAsync(s => s.Value == request.Subject);
                     if (dbSubject == null)
                     {
                         var tempSubject = summary.Subject;
-                        summary.Subject = new Subject { Value = request.Subject.ToLower() };
+                        summary.Subject = new Subject { Value = request.Subject };
 
                         var summaryWithSubject = await _context.Summaries
                             .FirstOrDefaultAsync(s => s.Subject == summary.Subject && s.Id != summary.Id);

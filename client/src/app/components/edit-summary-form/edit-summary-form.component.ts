@@ -66,7 +66,7 @@ export class EditSummaryFormComponent implements OnInit, OnChanges {
   ngOnInit(): void {
     this.subjectService.get().subscribe((subjects: string[]) => {
       this.allSubjects = subjects;
-      this.subjects = subjects.map((subject: string) => this.titlecasePipe.transform(subject));
+      this.subjects = subjects;
     })
 
     this.keywordService.get().subscribe((keywords: string[]) => {
@@ -101,8 +101,8 @@ export class EditSummaryFormComponent implements OnInit, OnChanges {
 
   onSubjectChange(): void {
     this.subjects = this.allSubjects.filter((subject: string) => {
-      return subject.startsWith(this.editSummaryForm.value.subject ? this.editSummaryForm.value.subject.toLowerCase() : '');
-    }).map((subject: string) => this.titlecasePipe.transform(subject));
+      return subject.startsWith(this.editSummaryForm.value.subject ? this.editSummaryForm.value.subject : '');
+    });
   }
 
   onKeywordChange(): void {
@@ -137,7 +137,7 @@ export class EditSummaryFormComponent implements OnInit, OnChanges {
     if (this.editSummaryForm.valid) {
       const summary: Summary = {
         semester: this.editSummaryForm.value.semester,
-        subject: this.editSummaryForm.value.subject.toLowerCase(),
+        subject: this.editSummaryForm.value.subject,
         name: this.editSummaryForm.value.name,
         keywords: this.keywords.map((keyword: string) => keyword.toLowerCase()),
       }

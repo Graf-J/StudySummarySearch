@@ -82,8 +82,8 @@ export class AddSummaryFormComponent implements OnInit {
 
   onSubjectChange(): void {
     this.subjects = this.allSubjects.filter((subject: string) => {
-      return subject.startsWith(this.addSummaryForm.value.subject ? this.addSummaryForm.value.subject.toLowerCase() : '');
-    }).map((subject: string) => this.titlecasePipe.transform(subject));
+      return subject.startsWith(this.addSummaryForm.value.subject ? this.addSummaryForm.value.subject : '');
+    });
   }
 
   onKeywordChange(): void {
@@ -108,7 +108,7 @@ export class AddSummaryFormComponent implements OnInit {
     if (this.addSummaryForm.valid) {
       const summary: Summary = {
         semester: this.addSummaryForm.value.semester,
-        subject: this.addSummaryForm.value.subject.toLowerCase(),
+        subject: this.addSummaryForm.value.subject,
         name: this.addSummaryForm.value.name,
         keywords: this.keywords.map((keyword: string) => keyword.toLowerCase()),
       }

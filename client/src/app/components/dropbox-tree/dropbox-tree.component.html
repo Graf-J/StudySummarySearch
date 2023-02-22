@@ -14,7 +14,7 @@
       </mat-icon>
     </button>
     <button mat-button (click)="onClick(node)">
-      {{ node.item | titlecase }}
+      {{ node.item }}
     </button>
     <div *ngIf="node.isLoading" class="w-75 p-1 d-flex justify-content-center align-items-center">
       <mat-progress-bar mode="indeterminate"></mat-progress-bar>
