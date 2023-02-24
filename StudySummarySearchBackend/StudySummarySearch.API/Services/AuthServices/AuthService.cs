@@ -129,7 +129,7 @@ namespace StudySummarySearch.API.Services.AuthServices
 
             var token = new JwtSecurityToken(
                 claims: claims,
-                expires: DateTime.Now.AddHours(6),
+                expires: DateTime.Now.AddDays(7),
                 signingCredentials: creds
             );
 
