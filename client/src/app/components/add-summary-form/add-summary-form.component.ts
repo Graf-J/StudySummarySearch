@@ -1,23 +1,12 @@
 import { TitleCasePipe } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, FormGroupDirective, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormGroupDirective, Validators } from '@angular/forms';
 import { Summary } from 'src/app/models/Summary';
 import { KeywordService } from 'src/app/services/keyword.service';
 import { SubjectService } from 'src/app/services/subject.service';
 import { SummaryService } from 'src/app/services/summary.service';
-
-function ValidateFileExtension(control: AbstractControl) {
-  if (control.value) {
-    const splitted = control.value.split('.');
-    const extension = splitted[splitted.length - 1];
-  
-    if (!(extension === 'jpg')) {
-      return { invalidFileExtension: true };
-    }
-  }
-  return null;
-}
+import { ValidateFileExtension } from 'src/app/validators/validators';
 
 @Component({
   selector: 'app-add-summary-form',
@@ -43,8 +32,8 @@ export class AddSummaryFormComponent implements OnInit {
 
   addSummaryForm: FormGroup = this.fb.group({
     semester: ['', [Validators.required, Validators.min(1), Validators.max(10)]],
-    subject: ['', Validators.required],
-    name: ['', Validators.required],
+    subject: ['', [Validators.required, Validators.pattern(/^[^&?]*$/)]],
+    name: ['', [Validators.required, Validators.pattern(/^[^&?]*$/)]],
     image: ['', [Validators.required, ValidateFileExtension]]
   });
 
