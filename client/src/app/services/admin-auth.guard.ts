@@ -10,11 +10,11 @@ export class AdminAuthGuard implements CanActivate {
   constructor(private router: Router, private auth: AuthService) { }
 
   canActivate(): boolean {
-    const token: string | null = sessionStorage.getItem('token');
+    const token: string | null = localStorage.getItem('token');
     if (token) {
       const authRole: string = this.auth.getTokenAuthRole(token);
       if (authRole === 'Admin' || authRole === 'SuperUser') return true;
-      this.router.navigate(['admin']);
+      this.router.navigate([]);
       return false;
     }
     this.router.navigate(['login']);

@@ -145,11 +145,9 @@ export class EditSummaryFormComponent implements OnInit, OnChanges {
 
       this.summaryService.update(this.selectedSummary!.id!, summary).subscribe({
         next: (summary: Summary) => {
-          console.log('Updated Summary...');
           if (this.editSummaryForm.value.image) {
             this.summaryService.upload(this.selectedSummary!.id!, this.imageFormData!).subscribe({
               next: (summary: Summary) => {
-                console.log('Uploaded new Image');
                 summary.isImageLoading = true;
                 this.summaryEdited.emit(summary);
                 this.imageFileName = null;

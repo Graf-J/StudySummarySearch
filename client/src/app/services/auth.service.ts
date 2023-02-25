@@ -13,7 +13,7 @@ export class AuthService {
 
   get isLoggedIn(): boolean {
     if (this._isLoggedIn) return true;
-    const token: string | null = sessionStorage.getItem('token');
+    const token: string | null = localStorage.getItem('token');
     if (token) {
       return !this.isTokenExpired(token);
     }

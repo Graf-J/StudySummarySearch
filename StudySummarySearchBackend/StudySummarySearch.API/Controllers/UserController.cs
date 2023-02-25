@@ -21,7 +21,7 @@ namespace StudySummarySearch.API.Controllers
             _userService = userService;
         }
 
-        [Authorize(Roles = "Admin,SuperUser")]
+        [Authorize]
         [HttpGet]
         public ActionResult<List<UserResponseDto>> GetUsers()
         {

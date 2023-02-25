@@ -9,7 +9,7 @@ export class SuperUserGuard implements CanActivate {
   constructor(private router: Router, private auth: AuthService) { }
 
   canActivate(): boolean {
-    const token: string | null = sessionStorage.getItem('token');
+    const token: string | null = localStorage.getItem('token');
     if (token) {
       const authRole: string = this.auth.getTokenAuthRole(token);
       if (authRole === 'SuperUser') return true;

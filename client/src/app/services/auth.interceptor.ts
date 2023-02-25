@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        const jwt: string | null = sessionStorage.getItem('token');
+        const jwt: string | null = localStorage.getItem('token');
         if (jwt) {
             const clonedReq = req.clone({
                 headers: req.headers.set('Authorization', `Bearer ${ jwt }`)
